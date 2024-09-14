@@ -1,0 +1,102 @@
+<DOCTYPE HTML></DOCTYPE>
+    <HTML>
+    <body>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: hwb(232 31% 14%);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+            .login-container {
+                background-color: hwb(248 9% 32%);
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                width: 300px;
+            }
+            h2 {
+                text-align: center;
+            }
+            input[type="text"], input[type="password"] {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            button {
+                width: 100%;
+                padding: 10px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #45a049;
+            }
+            .error {
+                color: red;
+                font-size: 12px;
+                display: none;
+            }
+        </style>
+    
+     <div role = "banner">
+    <br>
+     <h1>WELCOME</h1
+    <br>
+     <h3>HOW CAN WE HELP YOU!!!</h3>
+    <br>
+     </div>
+    <br>
+    <input type = "text" placeholder = "First Name">
+    <br>
+    <input type = "text" placeholder = "Middle Name">
+    <br>
+    <input type = "text" placeholder = "Last Name">
+    <br>
+    <input type = "password" placeholder = "Mobile No.">
+    <br>
+    <input type = "text" placeholder = "Email Id">
+    
+                          
+                            <div class="login-container">
+                                <h2>Login</h2>
+                                <form id="loginForm" onsubmit="return validateForm()">
+                                    <label for="username">Username</label>
+                                    <input type="text" id="username" name="username" placeholder="Enter Username">
+                        
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" name="password" placeholder="Enter Password">
+                        
+                                    <div class="error" id="errorMessage">Please enter a valid username and password.</div>
+                        
+                                    <button type="submit">Login</button>
+                                </form>
+                            </div>
+                            <script>
+                                function validateForm() {
+                                    const username = document.getElementById('username').value;
+                                    const password = document.getElementById('password').value;
+                                    const errorMessage = document.getElementById('errorMessage');
+                        
+                                    if (username === "" || password === "") {
+                                        errorMessage.style.display = "block";
+                                        return false;
+                                    } else {
+                                        errorMessage.style.display = "none";
+                                        
+                                        alert('Login successful');
+                                        window.location.href = "index.html";
+                                        return false;             }
+                                }
+                            </script>
+                        
+                        </body>
+                        </html>

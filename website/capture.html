@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capture Photo with Geotag</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .camera-controls {
+            margin-bottom: 20px;
+        }
+        .camera-controls button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+        }
+        .camera-controls button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .photo-preview {
+            margin-top: 20px;
+            display: none; /* Initially hide photo preview */
+        }
+        .photo-preview img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        .location-info {
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+        video, canvas {
+            display: block;
+            margin: 0 auto;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Capture Photo with Geotag</h1>
+    </header>
+    <div class="container">
+        <div class="camera-controls">
+            <button id="captureButton">Capture Photo</button>
+        </div>
+        <div class="photo-preview" id="photoPreview">
+            <!-- Photo preview will be displayed here -->
+        </div>
+        <div class="location-info" id="locationInfo">
+            <!-- Location information will be displayed here -->
+        </div>
+        <video id="video" width="640" height="480" autoplay></video>
+        <canvas id="canvas" width="640" height="480" class="photo-canvas hidden"></canvas>
+    </div>
+
+    <script>
+        const captureButton = document.getElementById('captureButton');
+        const photoPreview = document.getElementById('photoPreview');
+        const locationInfo = document.getElementById('locationInfo');
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+
+        let latitude = null;
+        let longitude = null;
+        let stream = null;
+
+        // Function to fetch and display geolocation information
+        function fetchLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        latitude = position.coords.latitude;
+                        longitude = position.coords.longitude;
+                        locationInfo.innerHTML = `
+                            <p>Current Location:</p>
+                            <p>Latitude: ${latitude.toFixed(6)}</p>
+                            <p>Longitude: ${longitude.toFixed(6)}</p>
+                            <p><a href="https://www.google.com/maps?q=${latitude},${longitude}" target="_blank" rel="noopener noreferrer">View on Google Maps</a></p>
+                        `;
+                        captureButton.disabled = false; // Enable the capture button
+                    },
+                    (error) => {
+                        console.error('Geolocation error:', error);
+                        locationInfo.innerHTML = '<p>Unable to retrieve location.</p>';
+                        captureButton.disabled = true; // Disable the capture button
+                    }
+                );
+            } else {
+                locationInfo.innerHTML = '<p>Geolocation is not supported by this browser.</p>';
+                captureButton.disabled = true; // Disable the capture button
+            }
+        }
+
+        // Fetch location when the page loads
+        fetchLocation();
+
+        // Set up the video stream
+        async function setupCamera() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+            } catch (error) {
+                console.error('Camera setup error:', error);
+                alert('Unable to access camera.');
+                captureButton.disabled = true; // Disable the capture button
+            }
+        }
+        
+        setupCamera();
+
+        // Capture the photo
+        captureButton.addEventListener('click', () => {
+            if (latitude !== null && longitude !== null) {
+                // Draw the video frame to the canvas
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                // Add text overlay with location information
+                context.fillStyle = 'white';
+                context.font = '20px Arial';
+                context.fillText(`Lat: ${latitude.toFixed(6)}`, 10, canvas.height - 40);
+                context.fillText(`Lon: ${longitude.toFixed(6)}`, 10, canvas.height - 10);
+
+                // Get the data URL of the canvas and set it as the image source
+                const dataURL = canvas.toDataURL('image/png');
+                photoPreview.innerHTML = `<img src="${dataURL}" alt="Captured Photo">`;
+                photoPreview.style.display = 'block'; // Show the photo preview
+                document.querySelector('.camera-controls').classList.add('hidden'); // Hide camera controls
+                video.classList.add('hidden'); // Hide the video element
+                canvas.classList.add('hidden'); // Hide the canvas element
+
+                // Stop the video stream
+                if (stream) {
+                    const tracks = stream.getTracks();
+                    tracks.forEach(track => track.stop());
+                }
+            } else {
+                alert('Location information is not available.');
+            }
+        });
+    </script>
+</body>
+</html>

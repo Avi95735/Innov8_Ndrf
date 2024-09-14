@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety Tips</title>
+    <style>
+        body {
+            background-color: #f0f8ff; 
+            font-family: Arial, sans-serif;
+            text-align: center; 
+            margin: 0; 
+            padding: 0; 
+        }
+        h1 {
+            color: #333; 
+            margin-top: 20px; 
+        }
+        h2 {
+            color: #666; 
+            margin: 10px 0;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        p {
+            margin: 0; 
+        }
+        img {
+            max-width: 100%; 
+            height: auto; 
+            margin: 20px 0;
+        }
+        .button-container {
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 20px; 
+            margin-bottom: 20px; 
+        }
+        button {
+            background-color: #7f69d6; 
+            color: white; 
+            border: none; 
+            padding: 15px 30px; 
+            text-align: center; 
+            text-decoration: none; 
+            font-size: 16px; 
+            cursor: pointer; 
+            border-radius: 5px; 
+            transition: background-color 0.3s, transform 0.3s; 
+        }
+        button:hover {
+            background-color: #45a049; 
+            transform: scale(1.05);
+        }
+        .tips-container {
+            display: none; 
+            margin-top: 20px;
+            text-align: center; 
+            flex-wrap: wrap;
+        }
+        .tips-container button {
+            background-color: aqua;
+            color: white;
+            margin: 10px;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <h2>Here are several videos that address safety protocols, including recommended practices and prohibited actions during a natural pandemic.</h2>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJQQ3XKYQUQ6m22YH1IP3xy4zaGdT5dwO23Q&s" alt="Illustration of safety protocols during a pandemic">
+
+    <div class="button-container">
+        <button onclick="toggleTips()">Safety Tips</button>
+    </div>
+
+    <div id="tips-container" class="tips-container">
+        <button id="earthquakes-btn">Earthquakes</button>
+        <button id="flash-floods-btn">Flash Floods</button>
+        <button>Landslides</button>
+        <button>Cyclones</button>
+        <button id="Snow-Storms-btn">Snow storms</button>
+    </div>
+
+    <script>
+        function toggleTips() {
+            var tipsContainer = document.getElementById('tips-container');
+            if (tipsContainer.style.display === 'none' || tipsContainer.style.display === '') {
+                tipsContainer.style.display = 'flex'; 
+                tipsContainer.style.opacity = '1';
+                tipsContainer.style.transition = 'opacity 0.3s ease-in';
+            } else {
+                tipsContainer.style.opacity = '0';
+                setTimeout(function() {
+                    tipsContainer.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        document.getElementById('earthquakes-btn').addEventListener('click', function() {
+            window.open('https://youtu.be/46Esq3OppYc?si=EoNDhvgvTSQCn53y', '_blank');
+        });
+
+        document.getElementById('flash-floods-btn').addEventListener('click', function() {
+            window.open('https://youtu.be/yTFtQf4Ip_0?si=IkwDv83E3FgOK53v', '_blank');
+        });
+        document.getElementById('Snow-Storms-btn').addEventListener('click', function() {
+            window.open('https://youtu.be/F_RQWM9_Z8A?si=XZCc8BRuBLZOauVD', '_blank');
+        });     
+        
+    </script>
+</body>
+</html>

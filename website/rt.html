@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services</title>
+    <style>
+        body {
+            background-color: aquamarine;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        h1, h2 {
+            color: #003366;
+        }
+        
+        button {
+            background-color: rgb(163, 204, 170);
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #00aaff;
+            color: white;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none; /* Initially hidden */
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Our Services</h1>
+    <button onclick="showContent('earthquake')">Earthquake</button>
+    <button onclick="showContent('flashFloods')">Flash Floods</button>
+    <button onclick="showContent('landslides')">Landslides</button>
+    <button onclick="showContent('cyclone')">Cyclone</button>
+    <button onclick="showContent('snowStorms')">Snow Storms</button>
+
+    <div id="content-container" class="content">
+        <!-- Content will be dynamically loaded here -->
+    </div>
+
+    <script>
+        function showContent(service) {
+            let contentHtml = '';
+
+            if (service === 'earthquake') {
+                contentHtml = `
+                    <h1>Earthquake</h1>
+                    <h2>During an earthquake, the National Disaster Response Force (NDRF) in India provides a range of crucial services to manage the crisis effectively and mitigate its impact. Here’s a detailed overview of the services offered by the NDRF during an earthquake:</h2>
+                    
+                    <h2>1. Rescue Operations:</h2>
+                    <ul>
+                        <li><strong>Search and Rescue:</strong> The NDRF deploys teams equipped with advanced tools and techniques to locate and rescue people trapped under rubble or debris. They use equipment like metal detectors, hydraulic cutters, and search dogs to find survivors.</li>
+                        <li><strong>Urban Search and Rescue (USAR):</strong> Specialized units are trained to navigate and operate in collapsed structures to safely extract individuals.</li>
+                    </ul>
+
+                    <h2>2. Medical Assistance:</h2>
+                    <ul>
+                        <li><strong>Emergency Medical Care:</strong> The NDRF provides first aid and emergency medical treatment to injured individuals at the site of the disaster. They set up temporary field hospitals if needed.</li>
+                        <li><strong>Casualty Evacuation:</strong> They assist in transporting injured persons to hospitals or medical facilities.</li>
+                    </ul>
+
+                    <h2>3. Relief Operations:</h2>
+                    <ul>
+                        <li><strong>Immediate Relief Supplies:</strong> Distribution of essential supplies such as food, water, clothing, blankets, and hygiene kits to affected populations.</li>
+                        <li><strong>Temporary Shelters:</strong> Establishment of temporary shelters for displaced individuals and families who have lost their homes.</li>
+                    </ul>
+
+                    <h2>4. Evacuation and Safety:</h2>
+                    <ul>
+                        <li><strong>Evacuation:</strong> They help in the evacuation of people from unsafe buildings and areas, ensuring their safety and relocation to safer places.</li>
+                        <li><strong>Structural Safety Checks:</strong> Conducting preliminary assessments to check the safety of buildings and infrastructure to prevent further risks.</li>
+                    </ul>
+
+                    <h2>5. Disaster Assessment and Coordination:</h2>
+                    <ul>
+                        <li><strong>Damage Assessment:</strong> Assessment of the extent of damage to infrastructure and buildings to prioritize response and recovery efforts.</li>
+                        <li><strong>Coordination:</strong> Working with state disaster management authorities, local agencies, and other organizations to ensure a coordinated and effective response.</li>
+                    </ul>
+
+                    <h2>6. Public Awareness and Guidance:</h2>
+                    <ul>
+                        <li><strong>Safety Guidelines:</strong> Providing information and guidance to the public on how to stay safe during aftershocks and how to handle emergency situations.</li>
+                        <li><strong>Educational Campaigns:</strong> Conducting awareness campaigns to educate people about earthquake preparedness and response measures.</li>
+                    </ul>
+
+                    <h2>7. Technical Support:</h2>
+                    <ul>
+                        <li><strong>Expert Teams:</strong> Deployment of experts in fields like engineering, medicine, and logistics to provide technical support and guidance in managing the disaster.</li>
+                    </ul>
+
+                    <h2>8. Training and Preparedness:</h2>
+                    <ul>
+                        <li><strong>Capacity Building:</strong> Conducting training programs for local authorities, first responders, and community members on earthquake preparedness, response techniques, and safety measures.</li>
+                    </ul>
+                `;
+            } else if (service === 'flashFloods') {
+                contentHtml = `
+                    <h1>Flash Floods</h1>
+                    <h2>During flash floods, the National Disaster Response Force (NDRF) in India provides a range of critical services to manage the situation and assist affected communities. Here’s a detailed overview of the services offered by the NDRF during flash floods:</h2>
+
+                    <h2>1. Rescue Operations:</h2>
+                    <ul>
+                        <li><strong>Search and Rescue:</strong> Conducting rescue operations to locate and assist people stranded by floodwaters using boats, helicopters, and specialized equipment.</li>
+                        <li><strong>Evacuation Assistance:</strong> Assisting in evacuating individuals from areas affected by flash floods to safer locations.</li>
+                    </ul>
+
+                    <h2>2. Medical Assistance:</h2>
+                    <ul>
+                        <li><strong>Emergency Medical Care:</strong> Providing first aid and emergency medical services to those injured or affected by the floods. Temporary medical facilities may be set up if needed.</li>
+                        <li><strong>Casualty Evacuation:</strong> Transporting injured or critically ill individuals to hospitals or medical facilities for further treatment.</li>
+                    </ul>
+
+                    <h2>3. Relief Operations:</h2>
+                    <ul>
+                        <li><strong>Distribution of Relief Supplies:</strong> Providing essential supplies such as food, water, clothing, blankets, and hygiene kits to affected individuals and communities.</li>
+                        <li><strong>Temporary Shelters:</strong> Setting up temporary shelters or relief camps for people displaced by flash floods or whose homes have been damaged.</li>
+                    </ul>
+
+                    <h2>4. Infrastructure Support:</h2>
+                    <ul>
+                        <li><strong>Debris Clearing:</strong> Removing debris from roads, highways, and critical infrastructure to restore transportation and access.</li>
+                        <li><strong>Restoration of Services:</strong> Assisting in restoring essential services such as electricity, water supply, and communication networks disrupted by the floods.</li>
+                    </ul>
+
+                    <h2>5. Disaster Assessment and Coordination:</h2>
+                    <ul>
+                        <li><strong>Damage Assessment:</strong> Assessing the extent of damage to infrastructure and property to prioritize response and recovery efforts.</li>
+                        <li><strong>Coordination:</strong> Working with state disaster management authorities, local agencies, and other organizations to ensure a coordinated response and efficient allocation of resources.</li>
+                    </ul>
+
+                    <h2>6. Public Awareness and Guidance:</h2>
+                    <ul>
+                        <li><strong>Safety Information:</strong> Providing guidance on how to stay safe during flash floods and their aftermath, including dealing with floodwaters and potential hazards.</li>
+                        <li><strong>Educational Campaigns:</strong> Conducting awareness campaigns to educate the public about flash flood preparedness, response measures, and how to minimize risks.</li>
+                    </ul>
+
+                    <h2>7. Technical Support:</h2>
+                    <ul>
+                        <li><strong>Expert Teams:</strong> Deploying experts in hydrology, engineering, and logistics to provide technical support and advice for managing the impacts of flash floods.</li>
+                    </ul>
+
+                    <h2>8. Training and Preparedness:</h2>
+                    <ul>
+                        <li><strong>Capacity Building:</strong> Offering training programs for local authorities, first responders, and community members on flash flood preparedness and response techniques.</li>
+                    </ul>
+                `;
+            } else if (service === 'landslides') 
+                contentHtml = `;
+            
+        } 
